@@ -1,5 +1,6 @@
 package training.spring.turkcellspring;
 
+import a.b.c.MyOtherPackageBean;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
@@ -10,9 +11,11 @@ import training.spring.turkcellspring.conditional.MyOptionalBean;
 @RequiredArgsConstructor
 public class InitialRun implements CommandLineRunner {
     private final HelloWorld helloWorld;
+    private final MyOtherPackageBean myOtherPackageBean;
 
     @Autowired(required = false)
     private MyOptionalBean myOptionalBean;
+
 
     @Override
     public void run(final String... args) throws Exception {
@@ -21,5 +24,6 @@ public class InitialRun implements CommandLineRunner {
         if (myOptionalBean != null){
             System.out.println("doIt : " + myOptionalBean.doIt());
         }
+        myOtherPackageBean.doIt();
     }
 }
