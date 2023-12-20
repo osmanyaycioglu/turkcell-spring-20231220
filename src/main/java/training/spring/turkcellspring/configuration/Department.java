@@ -1,6 +1,6 @@
 package training.spring.turkcellspring.configuration;
 
-import lombok.Data;
+import lombok.*;
 
 @Data
 public class Department {

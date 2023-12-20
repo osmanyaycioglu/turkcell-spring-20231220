@@ -32,7 +32,31 @@ my:
         distance: 1000
 server:
   port: 8899
+  shutdown: graceful
 spring:
   profiles:
     active: tr
     default: tr
+management:
+  info:
+    env:
+      enabled: true
+  endpoint:
+    health:
+      show-details: always
+      show-components: always
+    env:
+      show-values: always
+  endpoints:
+    web:
+      exposure:
+        include: '*'
+info:
+  test:
+    mest:
+      value: 1
+      another-value: 2
+    app:
+      version: 1
+      text: denem
+      pom-version: '@project.version@'

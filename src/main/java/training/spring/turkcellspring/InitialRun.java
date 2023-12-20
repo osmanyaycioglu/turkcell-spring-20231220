@@ -1,6 +1,7 @@
 package training.spring.turkcellspring;
 
 import a.b.c.MyOtherPackageBean;
+import jakarta.annotation.PreDestroy;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
@@ -26,4 +27,10 @@ public class InitialRun implements CommandLineRunner {
         }
         myOtherPackageBean.doIt();
     }
+
+    @PreDestroy
+    public void destroy(){
+        System.out.println("Initial Run Destroy");
+    }
+
 }
