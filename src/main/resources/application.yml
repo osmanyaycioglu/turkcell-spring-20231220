@@ -1,0 +1,38 @@
+my:
+  app:
+    appVersion: v1.0.0
+    app_test: Test
+    default-language: tr
+    default-names:
+      - osman
+      - ali
+      - veli
+      - mehmet
+      - mahmut
+    department:
+      distance: 30
+      location: istanbul
+      name: IT
+    departments:
+      - distance: 20
+        location: istanbul
+        name: Sale
+      - distance: 300
+        location: ankara
+        name: HR
+    response-timeout: 1000
+    department-map:
+      hr:
+        name: hr
+        location: izmir
+        distance: 400
+      tck:
+        name: tck
+        location: adana
+        distance: 1000
+server:
+  port: 8899
+spring:
+  profiles:
+    active: tr
+    default: tr
