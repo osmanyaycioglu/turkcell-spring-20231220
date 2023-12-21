@@ -33,12 +33,37 @@ my:
 server:
   port: 8899
   shutdown: graceful
+  error:
+    include-message: always
+    include-binding-errors: always
 spring:
+  datasource:
+    driverClassName: org.h2.Driver
+    url: jdbc:h2:file:./data/demo
+    username: sa
+    password: 123456
+  h2:
+    console:
+      enabled: true
+  jpa:
+    database-platform: org.hibernate.dialect.H2Dialect
+    hibernate:
+      ddl-auto: update
+    properties:
+      hibernate:
+        format_sql: true
+        show_sql: true
   profiles:
     active: tr
     default: tr
   lifecycle:
     timeout-per-shutdown-phase: 5m
+  activemq:
+    user:
+  security:
+    user:
+      name: nuser
+      password: 123456
 management:
   info:
     env:
@@ -64,3 +89,4 @@ info:
       version: 1
       text: denem
       pom-version: '@project.version@'
+
