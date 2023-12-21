@@ -37,6 +37,8 @@ spring:
   profiles:
     active: tr
     default: tr
+  lifecycle:
+    timeout-per-shutdown-phase: 5m
 management:
   info:
     env:
@@ -47,6 +49,8 @@ management:
       show-components: always
     env:
       show-values: always
+    shutdown:
+      enabled: true
   endpoints:
     web:
       exposure:
