@@ -11,6 +11,7 @@ import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
+import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 
 @Configuration
 public class SecurityConfig {
@@ -37,20 +38,26 @@ public class SecurityConfig {
         return httpSecurityParam.csrf(AbstractHttpConfigurer::disable)
                                 .cors(AbstractHttpConfigurer::disable)
                                 .authorizeHttpRequests(a -> a.requestMatchers("/actuator/**",
-                                                                              "/api/v1/hello/**",
-                                                                              "/auth/**")
+                                                                              "/auth/**",
+                                                                              "/h2-console/**")
                                                              .anonymous()
-//                                                             .requestMatchers(new AntPathRequestMatcher("/api/v1/employee/provision/**"))
-//                                                             .hasRole("ADMIN")
+                                                             .requestMatchers(new AntPathRequestMatcher("/api/v1/hello/**"))
+                                                             .hasAnyAuthority("ADMIN",
+                                                                              "SUPER_ADMIN")
                                                              .anyRequest()
                                                              .authenticated())
                                 .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
                                 .formLogin(AbstractHttpConfigurer::disable)
                                 .httpBasic(AbstractHttpConfigurer::disable)
+                                .headers()
+                                .frameOptions()
+                                .disable()
+                                .and()
                                 .addFilterBefore(new JWTFilter(jwtServiceParam,
                                                                myUserDetailServiceParam),
                                                  UsernamePasswordAuthenticationFilter.class)
                                 .build();
     }
+    // .headers(headers -> headers.frameOptions(frameOptionsConfig -> frameOptionsConfig.sameOrigin()));
 
 }

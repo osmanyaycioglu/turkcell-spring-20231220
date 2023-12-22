@@ -5,6 +5,7 @@ import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.web.bind.annotation.*;
+import training.spring.turkcellspring.aop.LogMe;
 import training.spring.turkcellspring.jpa.UserObj;
 
 @RestController
@@ -14,6 +15,8 @@ public class LoginController {
     private final JWTService            jwtService;
     private final AuthenticationManager authenticationManager;
 
+
+    @LogMe("Login")
     @PostMapping("/login")
     public String login(@RequestBody LoginObj loginObjParam) {
         Authentication authenticateLoc = authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(loginObjParam.getUsername(),

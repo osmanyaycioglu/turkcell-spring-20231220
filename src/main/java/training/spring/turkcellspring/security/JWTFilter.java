@@ -21,7 +21,7 @@ import java.util.List;
 public class JWTFilter extends OncePerRequestFilter {
     private final JWTService          jwtService;
     private final MyUserDetailService myUserDetailService;
-    private List<String> allowedList = List.of("/auth","/actuator");
+    private List<String> allowedList = List.of("/auth","/actuator","/h2-console");
 
 
     @Override

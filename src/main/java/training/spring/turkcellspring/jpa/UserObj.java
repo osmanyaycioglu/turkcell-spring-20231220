@@ -21,7 +21,7 @@ public class UserObj {
     private Long   userId;
     @NotEmpty
     @NotBlank
-    @Size(min = 6,max = 12)
+    @Size(min = 6, max = 12)
     @Column(unique = true)
     private String username;
     @NotEmpty

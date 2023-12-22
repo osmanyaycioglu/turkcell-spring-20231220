@@ -6,6 +6,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.context.annotation.Import;
 import org.springframework.scheduling.annotation.EnableAsync;
+import org.springframework.security.config.annotation.method.configuration.EnableMethodSecurity;
 import training.spring.turkcellspring.event.ApplicationEventsListener;
 
 //@SpringBootApplication(scanBasePackages = {"training.spring.turkcellspring","a.b.c"})
@@ -13,6 +14,7 @@ import training.spring.turkcellspring.event.ApplicationEventsListener;
 @Import({MyOtherPackageConfig.class})
 @EnableConfigurationProperties
 @EnableAsync
+@EnableMethodSecurity(prePostEnabled = true)
 public class TurkcellSpringApplication {
 
     public static void main(String[] args) {
